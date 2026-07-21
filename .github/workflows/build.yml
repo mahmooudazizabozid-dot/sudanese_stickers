@@ -2,7 +2,7 @@ name: Build Flutter APK
 
 on:
   push:
-    branches: ["main", "master"]
+    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
@@ -10,30 +10,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: "17"
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: stable
+          channel: 'stable'
 
       - name: Fix import paths
         run: |
           find lib/ -type f -name "*.dart" -exec sed -i "s/'lib\//'/g" {} + || true
-          find lib/ -type f -name "*.dart" -exec sed -i 's/"lib\//"/g' {} + || true
+          find lib/ -type f -name "*.dart" -exec sed -i 's/"lib\/"/"/g' {} + || true
 
-      - name: Create Android config
-        run: flutter create --platforms=android .
+      - name: Re-generate Android Project
+        run: flutter create . --platforms=android
+
+      - name: Get Dependencies
+        run: flutter pub get
 
       - name: Build Release APK
-        run: flutter build apk --release
+        run: flutter build apk --release --no-tree-shake-icons
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'subscription_screen.dart';
-import 'admin_panel.dart';
-import 'auth_screens.dart';
+import '../subscription_screen.dart';
+import '../admin_panel.dart';
+import '../auth_screens.dart';
 
 class StickersHomeScreen extends StatelessWidget {
   // البريد الإلكتروني الخاص بك كأدمن (محمود عبدالعزيز)
