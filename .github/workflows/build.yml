@@ -24,9 +24,8 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Re-generate Android Project & Dependencies
+      - name: Re-generate Android Project
         run: |
-          flutter clean
           flutter create . --platforms=android
           flutter pub get
 
@@ -43,3 +42,5 @@ jobs:
         with:
           name: sudanese-stickers-app
           path: build/app/outputs/flutter-apk/app-release.apk
+
+
