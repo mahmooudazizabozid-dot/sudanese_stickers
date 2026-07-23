@@ -1,38 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'auth_screens.dart';
-import 'lib/stickers_home_screen.dart';
+import 'stickers_home_screen.dart'; // تأكد من أن هذا الملف موجود
 
 void main() async {
+  // 1. ربط وتهيئة عناصر النظام الأساسية
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(SudaneseStickersApp());
+  
+  // 2. تهيئة فايربيس بشكل آمن لكي لا يتوقف التطبيق
+  try {
+    await Firebase.initializeApp();
+  } catch (e) {
+    debugPrint("خطأ في تهيئة Firebase: $e");
+  }
+
+  runApp(const SudaneseStickersApp());
 }
 
 class SudaneseStickersApp extends StatelessWidget {
+  const SudaneseStickersApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'الملصقات السودانية',
+      title: 'ملصقات سودانية',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
-        fontFamily: 'Roboto',
+        primarySwatch: Colors.blue,
       ),
-      // الفحص التلقائي: إذا كان المستخدم مسجلاً قبلاً ينتقل للرئيسية، وإلا فشاشة الدخول
-      home: StreamBuilder<User?>(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Scaffold(body: Center(child: CircularProgressIndicator()));
-          }
-          if (snapshot.hasData) {
-            return StickersHomeScreen();
-          }
-          return LoginScreen();
-        },
-      ),
+      home: const StickersHomeScreen(), // الصفحة الرئيسية التي أنشأناها مسبقاً
     );
   }
 }
