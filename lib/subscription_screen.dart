@@ -57,7 +57,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
             SizedBox(height: 15),
             Text('وصلت للحد المجاني (10 ملصقات)', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
-            Text('رسوم الاشتراك: 5000 جنيه سوداني / أسبوع', style: TextStyle(fontSize: 16, color: Colors.grey[800])),
+            Text('رسوم الاشتراك:2000 جنيه سوداني / أسبوع', style: TextStyle(fontSize: 16, color: Colors.grey[800])),
             Divider(height: 30),
             Container(
               padding: EdgeInsets.all(15),
@@ -67,7 +67,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   Text('طريقة الدفع: تطبيق بنكك (بنك الخرطوم)', style: TextStyle(fontWeight: FontWeight.bold)),
                   SizedBox(height: 8),
                   Text('رقم الحساب: 8607733', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.green[800])),
-                  Text('اسم الحساب: محمود عبدالعزيز', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                  Text('اسم الحساب:نوال جبرل  ', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
                 ],
               ),
             ),
