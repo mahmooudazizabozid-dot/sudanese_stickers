@@ -2,8 +2,7 @@ name: Build Flutter APK
 
 on:
   push:
-    branches: [ "main", "master" ]
-  workflow_dispatch:
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -16,39 +15,24 @@ jobs:
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: 'zulu'
           java-version: '17'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
-      - name: Re-generate Android Project
-        run: |
-          flutter create . --platforms=android
-          flutter pub get
+      - name: Install dependencies
+        run: flutter pub get
 
-      - name: Fix import paths
-        run: |
-          find lib/ -type f -name "*.dart" -exec sed -i "s/'lib\//'/g" {} + || true
-          find lib/ -type f -name "*.dart" -exec sed -i 's/"lib\/"/"/g' {} + || true
-
-      - name: Decode Keystore
-        run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/release.keystore
-
-      - name: Build Release APK
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      - name: Build APK
         run: flutter build apk --release --no-tree-shake-icons
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: sudanese-stickers-app
+          name: app-release
           path: build/app/outputs/flutter-apk/app-release.apk
-
 
