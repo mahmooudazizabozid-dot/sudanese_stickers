@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "436278779624",
+    "project_id": "applicationid-b3d3d",
+    "storage_bucket": "applicationid-b3d3d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436278779624:android:0c3b509184863710f3335d",
+        "android_client_info": {
+          "package_name": "com.example.sudanese_stickers_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHyxZ0qhRQj67cHayZnXYVbo6xRwizhLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+
